@@ -74,3 +74,16 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * Only numerical digits (0-9) should appear in the field
 * All non-numerical characters should be ignored
 * The field should display "12345" after all attempts
+
+# Module 5: Manual Return to Main Screen
+
+## Test steps
+1. Build and run CiCo
+2. Enter 00000000 into the field and click Update
+3. Click the new "Done" button before timeout occurs
+4. Verify main screen appears immediately
+
+## Expected results
+* Status panel should show a "Done" button
+* Clicking "Done" returns to main screen without waiting for timeout
+* Original timeout functionality should still work if button isn't clicked
