@@ -293,6 +293,13 @@ public class Main {
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
 
+    // Module5 Add Done button here
+    JButton buttonDone = new JButton("Done");
+    buttonDone.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    buttonDone.addActionListener(new Handler());
+    buttonDone.setForeground(Color.black);
+    panelStatus.add(buttonDone);
+
     panelStatus.add(Box.createVerticalGlue());
 
     // Error panel ////////////////////////////////////////////////////////////
