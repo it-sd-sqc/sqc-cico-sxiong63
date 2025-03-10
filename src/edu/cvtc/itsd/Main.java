@@ -39,29 +39,21 @@ public class Main {
 
     @Override
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
-        throws BadLocationException
+            throws BadLocationException
     {
       if (fb.getDocument() != null) {
         String filtered = stringToAdd.replaceAll("[^0-9]", "");
-        if (!filtered.isEmpty()) {
-          super.insertString(fb, offset, stringToAdd, attr);
-        } else {
-          Toolkit.getDefaultToolkit().beep();
-        }
+        super.insertString(fb, offset, filtered, attr);
       }
     }
 
     @Override
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
-        throws BadLocationException
+            throws BadLocationException
     {
       if (fb.getDocument() != null) {
         String filtered = stringToAdd.replaceAll("[^0-9]", "");
-        if (!filtered.isEmpty()) {
-          super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
-        } else {
-          Toolkit.getDefaultToolkit().beep();
-        }
+        super.replace(fb, offset, lengthToDelete, filtered, attr);
       }
     }
   }
@@ -178,6 +170,8 @@ public class Main {
   // Display errors to users //////////////////////////////////////////////////
   private static void showError(int code) {
     // Module 2 ticket: Show human-readable error messages.
+    Toolkit.getDefaultToolkit().beep();
+
     String[] explanations = {
         "Please inform staff an unknown error occurred.",
         "Please inform staff that database wasn't found.",
