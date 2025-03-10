@@ -87,3 +87,14 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 * Status panel should show a "Done" button
 * Clicking "Done" returns to main screen without waiting for timeout
 * Original timeout functionality should still work if button isn't clicked
+
+# Module 6-8: submit card after reading the last digit
+## Test steps
+1. Build and run CiCo
+2. Enter 00000000 into the field
+3. Verify main screen appears immediately after the last digit.
+
+## Expected results
+* Status panel should show up indicating checking/out.
+* Clicking "Done" returns to main screen without waiting for timeout.
+

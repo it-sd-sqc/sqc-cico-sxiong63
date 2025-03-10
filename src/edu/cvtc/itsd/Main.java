@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.TimerTask;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 
 // CiCo application's primary class ///////////////////////////////////////////
@@ -43,6 +45,7 @@ public class Main {
     {
       if (fb.getDocument() != null) {
         String filtered = stringToAdd.replaceAll("[^0-9]", "");
+
         if (!filtered.isEmpty()) {
           super.insertString(fb, offset, stringToAdd, attr);
         } else {
@@ -57,6 +60,7 @@ public class Main {
     {
       if (fb.getDocument() != null) {
         String filtered = stringToAdd.replaceAll("[^0-9]", "");
+
         if (!filtered.isEmpty()) {
           super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
         } else {
@@ -262,14 +266,22 @@ public class Main {
     fieldNumber.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     fieldNumber.setBackground(Color.green);
     fieldNumber.setForeground(Color.magenta);
+    // add a documentListener
+    fieldNumber.getDocument().addDocumentListener(new DocumentListener() {
+      @Override
+      public void insertUpdate(DocumentEvent e) {
+        if (fieldNumber.getText().length() == InputFilter.MAX_LENGTH) { // will verify if it reaches the max digit
+          processCard(); // will process the card
+        }
+      }
+      @Override
+      public void removeUpdate(DocumentEvent e) {
+      }
+      @Override
+      public void changedUpdate(DocumentEvent e) {
+      }
+    });
     panelMain.add(fieldNumber);
-
-    JButton updateButton = new JButton("Update");
-    updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-    updateButton.addActionListener(new Update());
-    updateButton.setForeground(Color.green);
-    panelMain.add(updateButton);
-
     panelMain.add(Box.createVerticalGlue());
 
     // Status panel ///////////////////////////////////////////////////////////
